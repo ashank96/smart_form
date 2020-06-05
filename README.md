@@ -14,12 +14,12 @@ The package also consists of the required auto validation tests in the test fold
 Looking forward to add more features to the smart_form if required.
 Suggestions will be appreciated.
 
-#Related Issues/PRs
+# Related Issues/PRs
 
-A couple of developers including me have already raised some <b>issues/PRs</b> for the same, to the official Flutter git repository, as below:
-<a href='https://github.com/flutter/flutter/pull/56132'> #56132 </a> 
-<a href='https://github.com/flutter/flutter/issues/36154'> #36154 </a> 
-<a href='https://github.com/flutter/flutter/pull/48876'> #48876 </a>
+A couple of developers including me have already raised some <b>issues/PRs</b> for the same, to the official Flutter git repository, as below:<br>
+<a href='https://github.com/flutter/flutter/pull/56132'> #56132 </a> <br>
+<a href='https://github.com/flutter/flutter/issues/36154'> #36154 </a> <br>
+<a href='https://github.com/flutter/flutter/pull/48876'> #48876 </a> <br>
 
 *PS:
 The code of the package uses most of the default flutter form widget code, with some changes, just for auto-validate 
