@@ -1,8 +1,8 @@
 name: smart_form
 description: A modified variant of Form widget, with freedom of harnessing autovalidation feature only when form state is changed for the first time. This form can be used to wrap any type of widget and use all the additional features of the form on them. The package also modifies the textformfield and dropdownbuttonformfield for flexibility with autovalidation. Looking forward to add more features to the smart_form. Suggestions will be appreciated.
 version: 0.0.1
-author: ashank bharati
-homepage:
+author: Ashank Bharati<bharatiashank1996@gmail.com>
+homepage: https://github.com/ashank96/smart_form.git
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
