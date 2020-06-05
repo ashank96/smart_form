@@ -14,12 +14,17 @@ The package also consists of the required auto validation tests in the test fold
 Looking forward to add more features to the smart_form if required.
 Suggestions will be appreciated.
 
+#Related Issues/PRs
+
+A couple of developers including me have already raised some <b>issues/PRs</b> for the same, to the official Flutter git repository, as below:
+<a href='https://github.com/flutter/flutter/pull/56132'> #56132 </a> 
+<a href='https://github.com/flutter/flutter/issues/36154'> #36154 </a> 
+<a href='https://github.com/flutter/flutter/pull/48876'> #48876 </a>
+
 *PS:
 The code of the package uses most of the default flutter form widget code, with some changes, just for auto-validate 
 to trigger only when the state of the FormField changes at least once. 
-A couple of developers including me have already raised an issue/PR for the same, to the official Flutter git repository, like:
-<a href='https://github.com/flutter/flutter/pull/56132'> #56132 </a> <a href='https://github.com/flutter/flutter/issues/36154'> #36154 </a> <a href='https://github.com/flutter/flutter/pull/48876'> #48876 </a>
-The flutter community is working on the required corrections for the same which may take sometime to merge, 
+The flutter community is working on the related issues for the same which may take sometime to merge, 
 to stable or beta channel.
 Till then you can make use of this package.*
 
