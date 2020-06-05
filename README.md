@@ -1,6 +1,6 @@
 # smart_form
 A modified variant package of <b>Form</b> widget in flutter as <b>SmartForm</b>, with freedom of using auto-validation 
-feature only when the form field state is changed for at least once, opposite to the usual scenario wherein 
+feature only when the form field state is changed at least once, opposite to the usual scenario wherein 
 the auto validation starts as soon as the Form is initialised, and even if nothing is entered in the form yet. 
 
 This is pretty unwanted behavior for most of the product UX designs, wherein you would only want to validate when the 
@@ -15,8 +15,15 @@ Looking forward to add more features to the smart_form if required.
 Suggestions will be appreciated.
 
 *PS:
-The code of the package uses most of the default flutter form widget code, with some changes, just for auto-validate to trigger only when the state of the FormField changes at least once. 
-A couple of developers including me have already raised a PR for the same, to the official Flutter git repository. The flutter community is working on the required corrections for the same which may take sometime to merge, to stable or beta channel.
+The code of the package uses most of the default flutter form widget code, with some changes, just for auto-validate 
+to trigger only when the state of the FormField changes at least once. 
+
+A couple of developers including me have already raised an issue/PR for the same, to the official Flutter git repository, like below:
+<a href='https://github.com/flutter/flutter/pull/56132'> #56132 </a>
+
+The flutter community is working on the required corrections for the same which may take sometime to merge, 
+to stable or beta channel.
+
 Till then you can make use of this package.*
 
 # Getting Started

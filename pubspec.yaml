@@ -1,5 +1,5 @@
 name: smart_form
-description: A modified variant of Form widget, with freedom of harnessing autovalidation feature only when form state is changed for the first time. This form can be used to wrap any type of widget and use all the additional features of the form on them. The package also modifies the textformfield and dropdownbuttonformfield for flexibility with autovalidation. Looking forward to add more features to the smart_form. Suggestions will be appreciated.
+description: A modified variant package of Form widget in flutter as SmartForm, with freedom of using auto-validation feature only when the form field state is changed at least once, opposite to the usual scenario wherein the auto validation starts as soon as the Form is initialised, and even if nothing is entered in the form yet.
 version: 0.0.1
 author: Ashank Bharati<bharatiashank1996@gmail.com>
 homepage: https://github.com/ashank96/smart_form.git
