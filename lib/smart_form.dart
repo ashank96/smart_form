@@ -1,7 +1,5 @@
 library smart_form;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'src/smart_form.dart';
+export 'src/smart_text_form_field.dart';
+export 'src/smart_drop_down_button_form_field.dart';
