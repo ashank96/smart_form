@@ -209,10 +209,10 @@ class SmartTextFormField extends SmartFormField<String> {
               const InputDecoration())
               .applyDefaults(Theme.of(field.context).inputDecorationTheme);
           void onChangedHandler(String value) {
+            field.didChange(value);
             if (onChanged != null) {
               onChanged(value);
             }
-            field.didChange(value);
           }
 
           return TextField(
