@@ -7,3 +7,8 @@
 
 * Update Readme with Related issues/PRs 
 * Add few example code
+
+
+## [0.0.3] - 2020-08-07
+
+* Update on change handler of smart_text_form_field
