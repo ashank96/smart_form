@@ -72,8 +72,8 @@ class SmartForm extends StatefulWidget {
   ///
   /// The [child] argument must not be null.
   const SmartForm({
-    Key key,
-    @required this.child,
+    Key? key,
+    required this.child,
     this.autovalidate = false,
     this.onWillPop,
     this.onChanged,
@@ -88,8 +88,8 @@ class SmartForm extends StatefulWidget {
   /// SmartFormState form = SmartForm.of(context);
   /// form.save();
   /// ```
-  static SmartFormState of(BuildContext context) {
-    final _FormScope scope =
+  static SmartFormState? of(BuildContext context) {
+    final _FormScope? scope =
     context.dependOnInheritedWidgetOfExactType<_FormScope>();
     return scope?._formState;
   }
@@ -116,13 +116,13 @@ class SmartForm extends StatefulWidget {
   ///
   ///  * [WillPopScope], another widget that provides a way to intercept the
   ///    back button.
-  final WillPopCallback onWillPop;
+  final WillPopCallback? onWillPop;
 
   /// Called when one of the form fields changes.
   ///
   /// In addition to this callback being invoked, all the form fields themselves
   /// will rebuild.
-  final VoidCallback onChanged;
+  final VoidCallback? onChanged;
 
   @override
   SmartFormState createState() => SmartFormState();
@@ -143,7 +143,7 @@ class SmartFormState extends State<SmartForm> {
   // to rebuild, useful if form fields have interdependencies.
   void _fieldDidChange() {
     if (widget.onChanged != null) {
-      widget.onChanged();
+      widget.onChanged!();
     }
     _forceRebuild();
   }
@@ -218,22 +218,22 @@ class SmartFormState extends State<SmartForm> {
 
 class _FormScope extends InheritedWidget {
   const _FormScope({
-    Key key,
-    Widget child,
-    SmartFormState formState,
-    int generation,
+    Key? key,
+    required Widget child,
+    SmartFormState? formState,
+    int? generation,
   })  : _formState = formState,
         _generation = generation,
         super(key: key, child: child);
 
-  final SmartFormState _formState;
+  final SmartFormState? _formState;
 
   /// Incremented every time a form field has changed. This lets us know when
   /// to rebuild the form.
-  final int _generation;
+  final int? _generation;
 
   /// The [SmartForm] associated with this widget.
-  SmartForm get form => _formState.widget;
+  SmartForm get form => _formState!.widget;
 
   @override
   bool updateShouldNotify(_FormScope old) => _generation != old._generation;
@@ -245,7 +245,7 @@ class _FormScope extends InheritedWidget {
 /// otherwise.
 ///
 /// Used by [SmartFormField.validator].
-typedef SmartFormFieldValidator<T> = String Function(T value);
+typedef SmartFormFieldValidator<T> = String? Function(T value);
 
 /// Signature for being notified when a form field changes value.
 ///
@@ -284,8 +284,8 @@ class SmartFormField<T> extends StatefulWidget {
   ///
   /// The [builder] argument must not be null.
   const SmartFormField({
-    Key key,
-    @required this.builder,
+    Key? key,
+    required this.builder,
     this.onSaved,
     this.validator,
     this.initialValue,
@@ -296,7 +296,7 @@ class SmartFormField<T> extends StatefulWidget {
 
   /// An optional method to call with the final value when the form is saved via
   /// [SmartFormState.save].
-  final SmartFormFieldSetter<T> onSaved;
+  final SmartFormFieldSetter<T>? onSaved;
 
   /// An optional method that validates an input. Returns an error string to
   /// display if the input is invalid, or null otherwise.
@@ -311,7 +311,7 @@ class SmartFormField<T> extends StatefulWidget {
   /// not an error is displayed, either wrap the  [TextFormField] in a fixed
   /// height parent like [SizedBox], or set the [TextFormField.helperText]
   /// parameter to a space.
-  final SmartFormFieldValidator<T> validator;
+  final SmartFormFieldValidator<T>? validator;
 
   /// Function that returns the widget representing this form field. It is
   /// passed the form field state as input, containing the current value and
@@ -319,7 +319,7 @@ class SmartFormField<T> extends StatefulWidget {
   final SmartFormFieldBuilder<T> builder;
 
   /// An optional value to initialize the form field to, or null otherwise.
-  final T initialValue;
+  final T? initialValue;
 
   /// If true, this form field will validate and update its error text
   /// immediately after every change. Otherwise, you must call
@@ -340,9 +340,9 @@ class SmartFormField<T> extends StatefulWidget {
 
 /// The current state of a [SmartFormField]. Passed to the [SmartFormFieldBuilder] method
 /// for use in constructing the form field's widget.
-class SmartFormFieldState<T> extends State<SmartFormField<T>> {
-  T _value;
-  String _errorText;
+class SmartFormFieldState<T> extends State<SmartFormField<T?>> {
+  T? _value;
+  String? _errorText;
 
   /// True when state becomes dirty for the first time, i.e. [ didChange(value) ] is called
   ///
@@ -350,12 +350,12 @@ class SmartFormFieldState<T> extends State<SmartFormField<T>> {
   bool _isStateDirty = false;
 
   /// The current value of the form field.
-  T get value => _value;
+  T? get value => _value;
 
   /// The current validation error returned by the [SmartFormField.validator]
   /// callback, or null if no errors have been triggered. This only updates when
   /// [validate] is called.
-  String get errorText => _errorText;
+  String? get errorText => _errorText;
 
   /// True if this field has any validation errors.
   bool get hasError => _errorText != null;
@@ -373,7 +373,7 @@ class SmartFormFieldState<T> extends State<SmartFormField<T>> {
   /// Calls the [SmartFormField]'s onSaved method with the current value.
   void save() {
     if (widget.onSaved != null) {
-      widget.onSaved(value);
+      widget.onSaved!(value);
     }
   }
 
@@ -402,7 +402,7 @@ class SmartFormFieldState<T> extends State<SmartFormField<T>> {
 
   void _validate() {
     if (widget.validator != null) {
-      _errorText = widget.validator(_value);
+      _errorText = widget.validator!(_value);
     }
   }
 

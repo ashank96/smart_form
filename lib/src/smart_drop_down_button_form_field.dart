@@ -16,28 +16,28 @@ class SmartDropdownButtonFormField<T> extends SmartFormField<T> {
   /// The `items`, `elevation`, `iconSize`, `isDense`, `isExpanded`,
   /// `autofocus`, and `decoration`  parameters must not be null.
   SmartDropdownButtonFormField({
-    Key key,
-    @required List<DropdownMenuItem<T>> items,
-    DropdownButtonBuilder selectedItemBuilder,
-    T value,
-    Widget hint,
-    Widget disabledHint,
-    @required this.onChanged,
+    Key? key,
+    required List<DropdownMenuItem<T>> items,
+    DropdownButtonBuilder? selectedItemBuilder,
+    T? value,
+    Widget? hint,
+    Widget? disabledHint,
+    required this.onChanged,
     int elevation = 8,
-    TextStyle style,
-    Widget icon,
-    Color iconDisabledColor,
-    Color iconEnabledColor,
+    TextStyle? style,
+    Widget? icon,
+    Color? iconDisabledColor,
+    Color? iconEnabledColor,
     double iconSize = 24.0,
     bool isDense = true,
     bool isExpanded = false,
-    double itemHeight,
-    Color focusColor,
-    FocusNode focusNode,
+    double? itemHeight,
+    Color? focusColor,
+    FocusNode? focusNode,
     bool autofocus = false,
-    InputDecoration decoration,
-    FormFieldSetter<T> onSaved,
-    FormFieldValidator<T> validator,
+    InputDecoration? decoration,
+    FormFieldSetter<T>? onSaved,
+    FormFieldValidator<T>? validator,
     bool autovalidate = false,
   })  : assert(
   items == null ||
@@ -66,8 +66,8 @@ class SmartDropdownButtonFormField<T> extends SmartFormField<T> {
         validator: validator,
         autovalidate: autovalidate,
         builder: (SmartFormFieldState<T> field) {
-          final _DropdownButtonFormFieldState<T> state =
-          field as _DropdownButtonFormFieldState<T>;
+          final _DropdownButtonFormFieldState<T?> state =
+          field as _DropdownButtonFormFieldState<T?>;
           final InputDecoration decorationArg =
               decoration ?? InputDecoration(focusColor: focusColor);
           final InputDecoration effectiveDecoration =
@@ -131,8 +131,8 @@ class SmartDropdownButtonFormField<T> extends SmartFormField<T> {
 
 class _DropdownButtonFormFieldState<T> extends SmartFormFieldState<T> {
   @override
-  SmartDropdownButtonFormField<T> get widget =>
-      super.widget as SmartDropdownButtonFormField<T>;
+  SmartDropdownButtonFormField<T?> get widget =>
+      super.widget as SmartDropdownButtonFormField<T?>;
 
   @override
   void didChange(T value) {
