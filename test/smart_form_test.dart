@@ -14,7 +14,7 @@ void main() {
     final GlobalKey<SmartFormFieldState<String>> fieldKey =
         GlobalKey<SmartFormFieldState<String>>();
     // Input 2's validator depends on a input 1's value.
-    String errorText(String input) => '${fieldKey.currentState.value}/error';
+    String errorText(String? input) => '${fieldKey.currentState!.value}/error';
 
     Widget builder() {
       return MaterialApp(
@@ -69,7 +69,7 @@ void main() {
     final GlobalKey<SmartFormFieldState<String>> fieldKey =
         GlobalKey<SmartFormFieldState<String>>();
     // Input 2's validator depends on a input 1's value.
-    String errorText(String input) => '${fieldKey.currentState.value}/error';
+    String errorText(String? input) => '${fieldKey.currentState!.value}/error';
 
     Widget builder() {
       return MaterialApp(

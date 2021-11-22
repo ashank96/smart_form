@@ -115,7 +115,7 @@ export 'package:flutter/services.dart' show SmartQuotesType, SmartDashesType;
 ///  * [InputDecorator], which shows the labels and other visual elements that
 ///    surround the actual text editing widget.
 ///  * Learn how to use a [TextEditingController] in one of our [cookbook recipe]s.(https://flutter.dev/docs/cookbook/forms/text-field-changes#2-use-a-texteditingcontroller)
-class SmartTextFormField extends SmartFormField<String> {
+class SmartTextFormField extends SmartFormField<String?> {
   /// Creates a [FormField] that contains a [TextField].
   ///
   /// When a [controller] is specified, [initialValue] must be null (the
@@ -126,50 +126,50 @@ class SmartTextFormField extends SmartFormField<String> {
   /// For documentation about the various parameters, see the [TextField] class
   /// and [new TextField], the constructor.
   SmartTextFormField({
-    Key key,
+    Key? key,
     this.controller,
-    String initialValue,
-    FocusNode focusNode,
+    String? initialValue,
+    FocusNode? focusNode,
     InputDecoration decoration = const InputDecoration(),
-    TextInputType keyboardType,
+    TextInputType? keyboardType,
     TextCapitalization textCapitalization = TextCapitalization.none,
-    TextInputAction textInputAction,
-    TextStyle style,
-    StrutStyle strutStyle,
-    TextDirection textDirection,
+    TextInputAction? textInputAction,
+    TextStyle? style,
+    StrutStyle? strutStyle,
+    TextDirection? textDirection,
     TextAlign textAlign = TextAlign.start,
-    TextAlignVertical textAlignVertical,
+    TextAlignVertical? textAlignVertical,
     bool autofocus = false,
     bool readOnly = false,
-    ToolbarOptions toolbarOptions,
-    bool showCursor,
+    ToolbarOptions? toolbarOptions,
+    bool? showCursor,
     bool obscureText = false,
     bool autocorrect = true,
-    SmartDashesType smartDashesType,
-    SmartQuotesType smartQuotesType,
+    SmartDashesType? smartDashesType,
+    SmartQuotesType? smartQuotesType,
     bool enableSuggestions = true,
     bool autovalidate = false,
     bool maxLengthEnforced = true,
     int maxLines = 1,
-    int minLines,
+    int? minLines,
     bool expands = false,
-    int maxLength,
-    ValueChanged<String> onChanged,
-    GestureTapCallback onTap,
-    VoidCallback onEditingComplete,
-    ValueChanged<String> onFieldSubmitted,
-    SmartFormFieldSetter<String> onSaved,
-    SmartFormFieldValidator<String> validator,
-    List<TextInputFormatter> inputFormatters,
-    bool enabled,
+    int? maxLength,
+    ValueChanged<String>? onChanged,
+    GestureTapCallback? onTap,
+    VoidCallback? onEditingComplete,
+    ValueChanged<String>? onFieldSubmitted,
+    SmartFormFieldSetter<String?>? onSaved,
+    SmartFormFieldValidator<String?>? validator,
+    List<TextInputFormatter>? inputFormatters,
+    bool? enabled,
     double cursorWidth = 2.0,
-    Radius cursorRadius,
-    Color cursorColor,
-    Brightness keyboardAppearance,
+    Radius? cursorRadius,
+    Color? cursorColor,
+    Brightness? keyboardAppearance,
     EdgeInsets scrollPadding = const EdgeInsets.all(20.0),
     bool enableInteractiveSelection = true,
-    InputCounterWidgetBuilder buildCounter,
-    ScrollPhysics scrollPhysics,
+    InputCounterWidgetBuilder? buildCounter,
+    ScrollPhysics? scrollPhysics,
   })  : assert(initialValue == null || controller == null),
         assert(textAlign != null),
         assert(autofocus != null),
@@ -202,11 +202,10 @@ class SmartTextFormField extends SmartFormField<String> {
         onSaved: onSaved,
         validator: validator,
         autovalidate: autovalidate,
-        enabled: enabled ?? decoration?.enabled ?? true,
-        builder: (SmartFormFieldState<String> field) {
+        enabled: enabled ?? decoration.enabled,
+        builder: (SmartFormFieldState<String?> field) {
           final _TextFormFieldState state = field as _TextFormFieldState;
-          final InputDecoration effectiveDecoration = (decoration ??
-              const InputDecoration())
+          final InputDecoration effectiveDecoration = (decoration)
               .applyDefaults(Theme.of(field.context).inputDecorationTheme);
           void onChangedHandler(String value) {
             field.didChange(value);
@@ -253,7 +252,7 @@ class SmartTextFormField extends SmartFormField<String> {
             onEditingComplete: onEditingComplete,
             onSubmitted: onFieldSubmitted,
             inputFormatters: inputFormatters,
-            enabled: enabled ?? decoration?.enabled ?? true,
+            enabled: enabled ?? decoration.enabled,
             cursorWidth: cursorWidth,
             cursorRadius: cursorRadius,
             cursorColor: cursorColor,
@@ -270,16 +269,16 @@ class SmartTextFormField extends SmartFormField<String> {
   ///
   /// If null, this widget will create its own [TextEditingController] and
   /// initialize its [TextEditingController.text] with [initialValue].
-  final TextEditingController controller;
+  final TextEditingController? controller;
 
   @override
   _TextFormFieldState createState() => _TextFormFieldState();
 }
 
-class _TextFormFieldState extends SmartFormFieldState<String> {
-  TextEditingController _controller;
+class _TextFormFieldState extends SmartFormFieldState<String?> {
+  TextEditingController? _controller;
 
-  TextEditingController get _effectiveController =>
+  TextEditingController? get _effectiveController =>
       widget.controller ?? _controller;
 
   @override
@@ -291,7 +290,7 @@ class _TextFormFieldState extends SmartFormFieldState<String> {
     if (widget.controller == null) {
       _controller = TextEditingController(text: widget.initialValue);
     } else {
-      widget.controller.addListener(_handleControllerChanged);
+      widget.controller!.addListener(_handleControllerChanged);
     }
   }
 
@@ -304,10 +303,10 @@ class _TextFormFieldState extends SmartFormFieldState<String> {
 
       if (oldWidget.controller != null && widget.controller == null) {
         _controller =
-            TextEditingController.fromValue(oldWidget.controller.value);
+            TextEditingController.fromValue(oldWidget.controller!.value);
       }
       if (widget.controller != null) {
-        setValue(widget.controller.text);
+        setValue(widget.controller!.text);
         if (oldWidget.controller == null) _controller = null;
       }
     }
@@ -320,17 +319,17 @@ class _TextFormFieldState extends SmartFormFieldState<String> {
   }
 
   @override
-  void didChange(String value) {
+  void didChange(String? value) {
     super.didChange(value);
 
-    if (_effectiveController.text != value) _effectiveController.text = value;
+    if (_effectiveController!.text != value) _effectiveController!.text = value!;
   }
 
   @override
   void reset() {
     super.reset();
     setState(() {
-      _effectiveController.text = widget.initialValue;
+      _effectiveController!.text = widget.initialValue!;
     });
   }
 
@@ -342,8 +341,8 @@ class _TextFormFieldState extends SmartFormFieldState<String> {
     // notifications for changes originating from within this class -- for
     // example, the reset() method. In such cases, the FormField value will
     // already have been set.
-    if (_effectiveController.text != value) {
-      didChange(_effectiveController.text);
+    if (_effectiveController!.text != value) {
+      didChange(_effectiveController!.text);
     }
   }
 }
